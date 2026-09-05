@@ -34,20 +34,36 @@ app.get('/about', (_req, res) => {
   res.sendFile(path.join(publicDir, 'about.html'));
 });
 app.get('/api/health', async (_req, res) => {
-  const readyState = mongoose.connection.readyState;
-  let status = readyState === 1 ? 'online' : readyState === 2 ? 'connecting' : 'offline';
-  if (readyState === 1) {
-    try {
-      await mongoose.connection.db.admin().command({ ping: 1 });
-    } catch {
-      status = 'offline';
+  try {
+    if (!process.env.MONGO_URI) {
+      return res.status(503).json({
+        database: 'MongoDB',
+        status: 'offline',
+        reason: 'MONGO_URI is not set',
+      });
     }
+    await connectDatabase();
+    const readyState = mongoose.connection.readyState;
+    if (readyState === 2) {
+      return res.status(503).json({ database: 'MongoDB', status: 'connecting', readyState });
+    }
+    if (readyState !== 1 || !mongoose.connection.db) {
+      return res.status(503).json({
+        database: 'MongoDB',
+        status: 'offline',
+        readyState,
+        reason: 'not connected',
+      });
+    }
+    await mongoose.connection.db.command({ ping: 1 });
+    return res.json({ database: 'MongoDB', status: 'online', readyState });
+  } catch {
+    return res.status(503).json({
+      database: 'MongoDB',
+      status: 'offline',
+      reason: 'connection failed',
+    });
   }
-  res.status(status === 'online' ? 200 : 503).json({
-    database: 'MongoDB',
-    status,
-    readyState,
-  });
 });
 app.use('/api/items', itemRoutes);
 
