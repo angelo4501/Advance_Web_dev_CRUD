@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings — Inventory Catalog</title>
+  <script src="/theme.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <nav class="navbar" aria-label="Primary">
+    <div class="navbar-inner">
+      <a class="brand brand--link" href="/">
+        <span class="brand-mark" aria-hidden="true">IC</span>
+        <span class="brand-copy">
+          <span class="eyebrow">Inventory</span>
+          <span class="brand-title">Catalog</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        Menu
+      </button>
+      <div id="primary-nav" class="nav-links">
+        <a class="nav-link" href="/dashboard.html">Dashboard</a>
+        <a class="nav-link" href="/">Catalog</a>
+        <a class="nav-link" href="/about.html">About</a>
+        <a class="nav-link is-active" href="/settings.html" aria-current="page">Settings</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Preferences</p>
+      <h1>Settings</h1>
+    </div>
+    <div class="topbar-tools">
+      <span class="status-dot is-checking" data-db-status>Checking database</span>
+    </div>
+  </header>
+
+  <main class="wrap wrap--settings">
+    <section class="settings-grid">
+      <article class="panel">
+        <p class="eyebrow">Display</p>
+        <h2>Theme</h2>
+        <p class="panel-copy">Switch between light and dark mode. Your choice is saved on this device.</p>
+        <div class="theme-options" role="radiogroup" aria-label="Theme">
+          <label class="theme-card">
+            <input type="radio" name="theme" value="light" />
+            <span class="theme-card__preview theme-card__preview--light" aria-hidden="true"></span>
+            <span>Light</span>
+          </label>
+          <label class="theme-card">
+            <input type="radio" name="theme" value="dark" />
+            <span class="theme-card__preview theme-card__preview--dark" aria-hidden="true"></span>
+            <span>Dark</span>
+          </label>
+        </div>
+      </article>
+
+      <article class="panel">
+        <p class="eyebrow">Catalog</p>
+        <h2>Currency</h2>
+        <p class="panel-copy">Choose how item prices are shown on the catalog and dashboard.</p>
+        <div class="field">
+          <label for="currency-select">Currency</label>
+          <select id="currency-select" aria-label="Currency">
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="CAD">CAD ($)</option>
+            <option value="JPY">JPY (¥)</option>
+            <option value="PHP">PHP (₱)</option>
+          </select>
+        </div>
+        <p class="settings-note" id="currency-saved" hidden>Currency saved.</p>
+      </article>
+
+      <article class="panel">
+        <p class="eyebrow">Database</p>
+        <h2>MongoDB status</h2>
+        <p class="panel-copy">Connection state for the inventory database.</p>
+        <p class="status-dot is-checking" data-db-status>Checking database</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="/dashboard.html">Dashboard</a>
+      <a href="/">Catalog</a>
+      <a href="/about.html">About</a>
+      <a href="/settings.html">Settings</a>
+    </nav>
+    <span>Angelo B. Arevalo · MIT 2</span>
+  </footer>
+
+  <script src="/nav.js"></script>
+  <script src="/settings.js"></script>
+</body>
+</html>

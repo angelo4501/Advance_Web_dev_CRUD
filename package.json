@@ -2,9 +2,10 @@
   "name": "crud-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "nodemon --watch node_modules/server.js --watch node_modules/routes --watch node_modules/public node_modules/server.js",
+    "dev": "nodemon --watch server.js --watch routes --watch public server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

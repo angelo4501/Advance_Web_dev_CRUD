@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Inventory Catalog</title>
+  <script src="/theme.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <nav class="navbar" aria-label="Primary">
+    <div class="navbar-inner">
+      <a class="brand brand--link" href="/">
+        <span class="brand-mark" aria-hidden="true">IC</span>
+        <span class="brand-copy">
+          <span class="eyebrow">Inventory</span>
+          <span class="brand-title">Catalog</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        Menu
+      </button>
+      <div id="primary-nav" class="nav-links">
+        <a class="nav-link is-active" href="/dashboard.html" aria-current="page">Dashboard</a>
+        <a class="nav-link" href="/">Catalog</a>
+        <a class="nav-link" href="/about.html">About</a>
+        <a class="nav-link" href="/settings.html">Settings</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Overview</p>
+      <h1>Dashboard</h1>
+    </div>
+    <div class="topbar-tools">
+      <span class="status-dot is-checking" data-db-status>Checking database</span>
+    </div>
+  </header>
+
+  <main class="wrap wrap--dashboard">
+    <section class="stats-grid" aria-label="Inventory summary">
+      <article class="panel stat-card">
+        <p class="eyebrow">Items</p>
+        <p class="stat-value" id="stat-items">0</p>
+        <p class="panel-copy">Total products in the catalog</p>
+      </article>
+      <article class="panel stat-card">
+        <p class="eyebrow">Units</p>
+        <p class="stat-value" id="stat-units">0</p>
+        <p class="panel-copy">Combined quantity on hand</p>
+      </article>
+      <article class="panel stat-card">
+        <p class="eyebrow">Low stock</p>
+        <p class="stat-value" id="stat-low">0</p>
+        <p class="panel-copy">Items with fewer than 3 units</p>
+      </article>
+      <article class="panel stat-card">
+        <p class="eyebrow">Catalog value</p>
+        <p class="stat-value" id="stat-value">$0.00</p>
+        <p class="panel-copy">Price times quantity</p>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="list-heading">
+        <div>
+          <p class="eyebrow">Item check</p>
+          <h2>Review inventory</h2>
+        </div>
+        <div class="list-tools">
+          <label class="search-label" for="dashboard-search">Search items</label>
+          <input type="search" id="dashboard-search" placeholder="Search by name or description" />
+          <select id="stock-filter" aria-label="Filter by stock">
+            <option value="all">All items</option>
+            <option value="low">Low stock</option>
+            <option value="out">Out of stock</option>
+          </select>
+        </div>
+      </div>
+      <p id="dashboard-count" class="item-count">Showing 0 of 0 items.</p>
+      <div class="table-wrap">
+        <table class="item-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="dashboard-list"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="item-dialog">
+    <form method="dialog" class="dialog-close-form">
+      <button type="submit" class="dialog-close" aria-label="Close item details">Close</button>
+    </form>
+    <div id="item-details"></div>
+  </dialog>
+
+  <footer class="footer">
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="/dashboard.html">Dashboard</a>
+      <a href="/">Catalog</a>
+      <a href="/about.html">About</a>
+      <a href="/settings.html">Settings</a>
+    </nav>
+    <span>Angelo B. Arevalo · MIT 2</span>
+  </footer>
+
+  <script src="/nav.js"></script>
+  <script src="/dashboard.js"></script>
+</body>
+</html>

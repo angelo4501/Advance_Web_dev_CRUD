@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Items — Inventory Catalog</title>
+  <script src="/theme.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <nav class="navbar" aria-label="Primary">
+    <div class="navbar-inner">
+      <a class="brand brand--link" href="/">
+        <span class="brand-mark" aria-hidden="true">IC</span>
+        <span class="brand-copy">
+          <span class="eyebrow">Inventory</span>
+          <span class="brand-title">Catalog</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        Menu
+      </button>
+      <div id="primary-nav" class="nav-links">
+        <a class="nav-link" href="/dashboard.html">Dashboard</a>
+        <a class="nav-link is-active" href="/" aria-current="page">Catalog</a>
+        <a class="nav-link" href="/about.html">About</a>
+        <a class="nav-link" href="/settings.html">Settings</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Inventory desk</p>
+      <h1>Items</h1>
+    </div>
+    <div class="topbar-tools">
+      <span class="status-dot is-checking" data-db-status>Checking database</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="panel panel--form">
+      <div class="panel-heading">
+        <p class="eyebrow">Catalog entry</p>
+        <h2 id="form-title">Add an item</h2>
+        <p class="panel-copy">Record a product with pricing and stock so the catalog stays current.</p>
+      </div>
+      <form id="item-form">
+        <input type="hidden" id="item-id" />
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="e.g. Field notebook" />
+          <p class="field-error" id="name-error"></p>
+        </div>
+        <div class="field">
+          <label for="description">Description</label>
+          <textarea id="description" placeholder="What makes this item useful?"></textarea>
+          <p class="field-error" id="description-error"></p>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="price">Price</label>
+            <input type="number" id="price" placeholder="0.00" min="0" step="0.01" />
+            <p class="field-error" id="price-error"></p>
+          </div>
+          <div class="field">
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" placeholder="1" min="0" step="1" value="1" required />
+            <p class="field-error" id="quantity-error"></p>
+          </div>
+        </div>
+        <button class="btn--primary" type="submit">Add item</button>
+      </form>
+    </section>
+
+    <section class="panel panel--list">
+      <div class="list-heading">
+        <div>
+          <p class="eyebrow">Your collection</p>
+          <h2>All items</h2>
+        </div>
+        <div class="list-tools">
+          <label class="search-label" for="search">Search items</label>
+          <input type="search" id="search" placeholder="Search by name or description" />
+          <button type="button" id="sort-price" class="btn--secondary">Price: low to high</button>
+        </div>
+      </div>
+      <p id="item-count" class="item-count">Showing 0 of 0 items.</p>
+      <div id="list"></div>
+    </section>
+  </main>
+
+  <dialog id="item-dialog">
+    <form method="dialog" class="dialog-close-form">
+      <button type="submit" class="dialog-close" aria-label="Close item details">Close</button>
+    </form>
+    <div id="item-details"></div>
+  </dialog>
+
+  <footer class="footer">
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="/dashboard.html">Dashboard</a>
+      <a href="/">Catalog</a>
+      <a href="/about.html">About</a>
+      <a href="/settings.html">Settings</a>
+    </nav>
+    <span>Angelo B. Arevalo · MIT 2</span>
+  </footer>
+
+  <script src="/nav.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
