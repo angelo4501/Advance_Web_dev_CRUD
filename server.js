@@ -6,6 +6,7 @@ const itemRoutes = require('./routes/itemRoutes');
 
 const app = express();
 const publicDir = path.join(__dirname, 'public');
+let databaseConnection;
 
 async function connectDatabase() {
   if (mongoose.connection.readyState === 1) return;
@@ -13,8 +14,15 @@ async function connectDatabase() {
     console.error('MONGO_URI is not set');
     return;
   }
-  await mongoose.connect(process.env.MONGO_URI);
-  console.log('Connected to MongoDB');
+  if (!databaseConnection) {
+    databaseConnection = mongoose.connect(process.env.MONGO_URI)
+      .then(() => console.log('Connected to MongoDB'))
+      .catch((err) => {
+        databaseConnection = null;
+        throw err;
+      });
+  }
+  await databaseConnection;
 }
 
 connectDatabase().catch((err) => console.error('MongoDB connection error:', err));
